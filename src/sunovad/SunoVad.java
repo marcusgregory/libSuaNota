@@ -31,7 +31,7 @@ public class SunoVad {
                 .data("btnOk", "Avançar")
                 .execute();
         String identificador=execute1.parse().select("#textoContainer > form > p:nth-child(1) > span").get(0).text();
-        System.out.println("ID:"+identificador);
+        
         Map<String, String> cookies =execute1.cookies();
                 System.out.println("Cookies:"+cookies);
         System.out.println("Cookies OK");
@@ -53,9 +53,8 @@ public class SunoVad {
         System.out.println("|Identificador:|"+execute.parse().select("form>table td:eq(1)").get(0).text());
         System.out.println("|Nome         :|"+execute.parse().select("form>table td:eq(1)").get(1).text());
         System.out.println("|CPF          :|"+execute.parse().select("form>table td:eq(1)").get(2).text());
-        
-        }else{
-            System.err.println("Usuário não cadastrado inativo ou número identificador errado!");
+       }else{
+            System.err.println("Usuário não cadastrado, inativo ou número identificador errado!");
         }
     }
     
