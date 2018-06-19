@@ -5,6 +5,7 @@
  */
 package Sistema;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 /**
@@ -26,7 +27,9 @@ public class Sistema {
         this.CPF = CPF;
     }
 
-    
+    public Usuario logar() throws IOException{
+        return Requests.RequestUsuario.request(this);
+    }
     @Override
     public String toString() {
         return "Sistema{" + "CPF=" + CPF + '}';

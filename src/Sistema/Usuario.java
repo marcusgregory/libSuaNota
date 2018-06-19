@@ -6,6 +6,7 @@
 package Sistema;
 
 import Exceptions.UsuarioNaoLogadoException;
+import java.util.Map;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Usuario {
     private String nome;
     private String CPF;
     private String numID;
+    private Map<String, String> cookies;
     private static Usuario usuario;
 
     public Usuario() {
@@ -54,9 +56,19 @@ public class Usuario {
         this.numID = numID;
     }
 
+    public Map<String, String> getCookies() {
+        return cookies;
+    }
+
+    public void setCookies(Map<String, String> cookies) {
+        this.cookies = cookies;
+    }
+
     @Override
     public String toString() {
-        return "Usuario{" + "nome=" + nome + ", CPF=" + CPF + ", numID=" + numID + '}';
+        return "Usuario{" + "nome=" + nome + ", CPF=" + CPF + ", numID=" + numID + ", cookies=" + cookies + '}';
     }
+
+    
 
 }

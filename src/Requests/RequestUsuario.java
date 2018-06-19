@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sunovad;
+package Requests;
 
+import Sistema.Sistema;
+import Sistema.Usuario;
 import java.io.IOException;
 import java.util.Map;
-import java.util.Scanner;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
@@ -15,52 +16,48 @@ import org.jsoup.Jsoup;
  *
  * @author Gregory
  */
-public class SunoVad {
+public class RequestUsuario {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws IOException {
-        Scanner entrada=new Scanner(System.in);
-        System.out.println("Digite seu CPF:");
-        String CPF=entrada.nextLine();
+    public static Usuario request(Sistema sistema) throws IOException {
         System.out.println("Obtendo Cookies...");
         Connection.Response execute1 = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/consultas/consulta_ID.asp").userAgent("Mozilla/5.0").method(Connection.Method.POST).validateTLSCertificates(false)
-                .data("txtCpfCnpj", CPF)
+                .data("txtCpfCnpj", sistema.getCPF())
                 .data("rdbCpfCnpj", "2")
                 .data("btnOk", "Avançar")
                 .execute();
-        if(execute1.parse().select("#textoContainer > form > p:nth-child(1) > span").isEmpty()){
-            System.out.println("VAZIO");
+         if(execute1.parse().select("#textoContainer > form > p:nth-child(1) > span").isEmpty()){
+            throw new IOException("CPF/CNPJ Inválido ou não cadastrado!");
         }else{
-            System.out.println("VALIDO");
-    }
-        String identificador=execute1.parse().select("#textoContainer > form > p:nth-child(1) > span").get(0).text();
-        
-        Map<String, String> cookies =execute1.cookies();
-                System.out.println("Cookies:"+cookies);
+        String identificador = execute1.parse().select("#textoContainer > form > p:nth-child(1) > span").get(0).text();
+
+        Map<String, String> cookies = execute1.cookies();
+
+        System.out.println("Cookies:" + cookies);
         System.out.println("Cookies OK");
         System.out.println("Efetuando login...");
         Connection.Response execute = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/validar_usuario.asp")
                 .method(Connection.Method.POST)
-                .header("Connection","keep-alive")
+                .header("Connection", "keep-alive")
                 .header("Referer", "https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/consultas/ler_dados.asp")
                 .cookies(cookies)
                 .data("pagina", "incluir_documento")
                 .data("pessoa", "fisica").userAgent("Mozilla/5.0")
                 .data("txtIdentificador", identificador)
-                .data("txtCpfCnpj", CPF)
+                .data("txtCpfCnpj", sistema.getCPF())
                 .data("btnOk", "Avançar").validateTLSCertificates(false).followRedirects(false).execute();
-        System.err.println("StatusHTTP="+execute.statusCode()+" | "+execute.statusMessage());
-        if(execute.statusCode()==200){
+        System.err.println("StatusHTTP=" + execute.statusCode() + " | " + execute.statusMessage());
+        if (execute.statusCode() == 200) {
             System.out.println("Login OK");
-        
-        System.out.println("|Identificador:|"+execute.parse().select("form>table td:eq(1)").get(0).text());
-        System.out.println("|Nome         :|"+execute.parse().select("form>table td:eq(1)").get(1).text());
-        System.out.println("|CPF          :|"+execute.parse().select("form>table td:eq(1)").get(2).text());
-       }else{
-            System.err.println("Usuário não cadastrado, inativo ou número identificador errado!");
+            Usuario usuario = new Usuario();
+            usuario.setNumID(execute.parse().select("form>table td:eq(1)").get(0).text());
+            usuario.setNome(execute.parse().select("form>table td:eq(1)").get(1).text());
+            usuario.setCPF(execute.parse().select("form>table td:eq(1)").get(2).text());
+            usuario.setCookies(cookies);
+            return usuario;
+        } else {
+            throw new IOException("Usuário inativo ou número identificador errado!");
         }
+         }
+        
     }
-    
 }
