@@ -22,7 +22,7 @@ public class NewMain {
     public static void main(String[] args) {
         try {
             // TODO code application logic here
-            System.out.println(new Sistema("").logar().toString());
+            System.out.println(new Sistema("06663852388").logar().toString());
         } catch (IOException ex) {
             Logger.getLogger(NewMain.class.getName()).log(Level.SEVERE, null, ex);
         }
