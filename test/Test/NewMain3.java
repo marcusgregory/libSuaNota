@@ -34,7 +34,7 @@ public class NewMain3 {
                     .cookies(u.getCookies())
                     .execute();
 
-            Connection.Response execute2 = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/incluir_nf.asp").userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36").method(Connection.Method.GET).validateTLSCertificates(false)
+            Connection.Response execute2 = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/incluir_cf.asp").userAgent("Mozilla/5.0").method(Connection.Method.GET).validateTLSCertificates(false)
                     .header("Referer", "https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/tipo_documento.asp")             
                     .cookies(u.getCookies())
                     .execute();
@@ -58,6 +58,25 @@ public class NewMain3 {
                 
             }
             //System.out.println(docsLote.eq(1));
+            
+            Connection.Response execute3 = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/incluir_cf.asp").userAgent("Mozilla/5.0").method(Connection.Method.POST).validateTLSCertificates(false).followRedirects(false)
+                    .header("Referer", "https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/incluir_cf.asp")             
+                    .cookies(u.getCookies())
+                    .data("cgf", "5802470")
+                    .data("data_emissao", "17/06/2018")
+                    .data("hidLote", "6296906")
+                    .data("hidParticipante", "1395051")
+                    .data("num_fab_ecf", "DR0609BR000000190898")
+                    .data("numero_caixa", "5")
+                    .data("numero_cf", "391826")
+                    .data("salvar", "Salvar")
+                    .data("seqDocFiscal", "239186337")
+                    .data("tipoParticipanteSessao", "fisica")
+                    .data("valor", "55")
+                    .execute();
+            
+            System.out.println(execute3.parse().getElementsByTag("script").last());
+            System.out.println(execute3.statusCode());
     }
     
 }
