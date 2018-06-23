@@ -11,12 +11,30 @@ package Sistema;
  */
 public class CF {
 
-    private String CGF;
-    private String COO;
+    private String numCGF;
+    private String numDocCOO;
     private String numCaixaECF;
     private String numFab;
     private String dataEmissao;
     private String valor;
+    private String hidLote;
+    private String secDocFiscal;
+   
+    public String getSecDocFiscal() {
+        return secDocFiscal;
+    }
+
+    public void setSecDocFiscal(String secDocFiscal) {
+        this.secDocFiscal = secDocFiscal;
+    }
+
+    public String getHidLote() {
+        return hidLote;
+    }
+
+    public void setHidLote(String hidLote) {
+        this.hidLote = hidLote;
+    }
 
     public String getValor() {
         return valor;
@@ -42,28 +60,36 @@ public class CF {
         this.numFab = numFab;
     }
 
-    public String getECF() {
+    public String getNumCaixaECF() {
         return numCaixaECF;
     }
 
-    public void setECF(String ECF) {
-        this.numCaixaECF = ECF;
+    public void setNumCaixaECF(String numCaixaECF) {
+        this.numCaixaECF = numCaixaECF;
     }
 
-    public String getCOO() {
-        return COO;
+    public String getNumDocCOO() {
+        return numDocCOO;
     }
 
-    public void setCOO(String COO) {
-        this.COO = COO;
+    public void setNumDocCOO(String numDocCOO) {
+        this.numDocCOO = numDocCOO;
     }
 
-    public String getCGF() {
-        return CGF;
+    public String getNumECF() {
+        return numCaixaECF;
     }
 
-    public void setCGF(String CGF) {
-        this.CGF = CGF;
+    public void setNumECF(String numECF) {
+        this.numCaixaECF = numECF;
+    }
+
+    public String getNumCGF() {
+        return numCGF;
+    }
+
+    public void setNumCGF(String numCGF) {
+        this.numCGF = numCGF;
     }
 
 }
