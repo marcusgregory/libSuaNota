@@ -5,6 +5,7 @@
  */
 package Test;
 
+import Exceptions.ErroLoginException;
 import Sistema.Sistema;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -19,7 +20,7 @@ public class NewMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ErroLoginException {
         try {
             // TODO code application logic here
             System.out.println(new Sistema("06663852388").logar().toString());

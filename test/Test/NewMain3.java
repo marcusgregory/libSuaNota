@@ -5,6 +5,7 @@
  */
 package Test;
 
+import Exceptions.ErroLoginException;
 import Sistema.Sistema;
 import Sistema.Usuario;
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class NewMain3 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ErroLoginException {
         // TODO code application logic here
         
        Usuario u = new Sistema("06663852388").logar();
@@ -68,7 +69,7 @@ public class NewMain3 {
                     .data("hidParticipante", "1395051")
                     .data("num_fab_ecf", "DR0609BR000000190898")
                     .data("numero_caixa", "5")
-                    .data("numero_cf", "391826")
+                    .data("numero_cf", "12342555")
                     .data("salvar", "Salvar")
                     .data("seqDocFiscal", "239186337")
                     .data("tipoParticipanteSessao", "fisica")

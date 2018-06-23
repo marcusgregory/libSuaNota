@@ -5,6 +5,7 @@
  */
 package Requests;
 
+import Exceptions.ErroLoginException;
 import Sistema.Sistema;
 import Sistema.Usuario;
 import java.io.IOException;
@@ -18,7 +19,7 @@ import org.jsoup.Jsoup;
  */
 public class RequestUsuario {
 
-    public static Usuario request(Sistema sistema) throws IOException {
+    public static Usuario request(Sistema sistema) throws IOException, ErroLoginException {
         System.out.println("Obtendo Cookies...");
         Connection.Response execute1 = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/consultas/consulta_ID.asp").userAgent("Mozilla/5.0").method(Connection.Method.POST).validateTLSCertificates(false)
                 .data("txtCpfCnpj", sistema.getCPF())
@@ -55,7 +56,7 @@ public class RequestUsuario {
             usuario.setCookies(cookies);
             return usuario;
         } else {
-            throw new IOException("Usuário inativo ou número identificador errado!");
+            throw new ErroLoginException("Usuário inativo ou número identificador errado!");
         }
          }
         
