@@ -10,8 +10,6 @@ import DocsFiscais.ListaCF;
 import Sistema.Usuario;
 import Verificadores.Regex;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
