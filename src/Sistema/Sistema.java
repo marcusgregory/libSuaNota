@@ -8,7 +8,6 @@ package Sistema;
 import Exceptions.ErroLoginException;
 import Exceptions.UsuarioNaoLogadoException;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 /**
  *
@@ -39,7 +38,7 @@ public static Sistema getSistemaAtual() throws UsuarioNaoLogadoException{
     }
 
     public Usuario logar() throws IOException, ErroLoginException{
-        return Requests.RequestUsuario.request(this);
+        return Requests.RequestLoginUsuario.request(this);
     }
     @Override
     public String toString() {

@@ -18,7 +18,7 @@ import org.jsoup.select.Elements;
  *
  * @author Gregory
  */
-public class RequestUsuario {
+public class RequestLoginUsuario {
 //Método "request" recebe um objeto "Sistema" e faz o Login do usuário usando o CPF e retorna um objeto "Usuário"
 
     public static Usuario request(Sistema sistema) throws IOException, ErroLoginException {
@@ -35,7 +35,7 @@ public class RequestUsuario {
         //Verifica se existe um "alert" de erro na página de resposta, se houver então o CPF/CNPJ foi digitado incorretamente 
         //ou não existe no Sistema da Sefaz.
         if (pagConsultaID.parse().select("#textoContainer > form > p:nth-child(1) > span").isEmpty()) {
-            throw new IOException("CPF/CNPJ Inválido ou não cadastrado!");//Lança uma exceção.
+            throw new ErroLoginException("CPF/CNPJ Inválido ou não cadastrado!");//Lança uma exceção.
             //se não houver um "alert" prossegue com as solicitações.
         } else {
             //Obte o número identificador necessário para efetuar o Login na próxima solicitação.
