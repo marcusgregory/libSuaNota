@@ -60,23 +60,24 @@ public class NewMain3 {
             }
             //System.out.println(docsLote.eq(1));
             
-            Connection.Response execute3 = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/incluir_cf.asp").userAgent("Mozilla/5.0").method(Connection.Method.POST).validateTLSCertificates(false).followRedirects(false)
+            Connection.Response execute3 = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/incluir_cf.asp").userAgent("Mozilla/5.0").method(Connection.Method.POST).validateTLSCertificates(false)
                     .header("Referer", "https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/incluir_cf.asp")             
                     .cookies(u.getCookies())
                     .data("cgf", "5802470")
-                    .data("data_emissao", "17/06/2018")
-                    .data("hidLote", "6296906")
-                    .data("hidParticipante", "1395051")
-                    .data("num_fab_ecf", "DR0609BR000000190898")
-                    .data("numero_caixa", "5")
                     .data("numero_cf", "12342555")
-                    .data("salvar", "Salvar")
+                    .data("numero_caixa", "5")
+                    .data("num_fab_ecf", "DR0609BR000000190898")
+                    .data("data_emissao", "12/06/2018")
+                    .data("valor", "55")
+                    .data("hidLote", "6296906")
+                    .data("hidParticipante", "1395051")  
                     .data("seqDocFiscal", "239186337")
                     .data("tipoParticipanteSessao", "fisica")
-                    .data("valor", "55")
+                    .data("salvar", "Salvar")
+                   
                     .execute();
             
-            System.out.println(execute3.parse().getElementsByTag("script").last());
+            System.out.println(execute3.body());
             System.out.println(execute3.statusCode());
     }
     
