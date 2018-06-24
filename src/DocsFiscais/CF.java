@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Sistema;
+package DocsFiscais;
 
 /**
  *
@@ -90,6 +90,11 @@ public class CF {
 
     public void setNumCGF(String numCGF) {
         this.numCGF = numCGF;
+    }
+
+    @Override
+    public String toString() {
+        return "CF{" + "numCGF=" + numCGF + ", numDocCOO=" + numDocCOO + ", numCaixaECF=" + numCaixaECF + ", numFab=" + numFab + ", dataEmissao=" + dataEmissao + ", valor=" + valor + ", hidLote=" + hidLote + ", secDocFiscal=" + secDocFiscal + '}';
     }
 
 }

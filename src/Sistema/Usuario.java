@@ -5,7 +5,12 @@
  */
 package Sistema;
 
+import DocsFiscais.CF;
+import DocsFiscais.ListaCF;
 import Exceptions.UsuarioNaoLogadoException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -64,11 +69,13 @@ public class Usuario {
         this.cookies = cookies;
     }
 
+    public ListaCF getListaDocs() throws IOException {
+        return Requests.RequestDocFiscal.request(this);
+    }
+
     @Override
     public String toString() {
         return "Usuario{" + "nome=" + nome + ", CPF=" + CPF + ", numID=" + numID + ", cookies=" + cookies + '}';
     }
-
-    
 
 }

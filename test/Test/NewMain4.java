@@ -5,6 +5,9 @@
  */
 package Test;
 
+import Exceptions.ErroLoginException;
+import Sistema.Sistema;
+import Sistema.Usuario;
 import java.io.IOException;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -18,10 +21,9 @@ public class NewMain4 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ErroLoginException {
         // TODO code application logic here
-         Connection.Response execute2 = Jsoup.connect("").userAgent("Mozilla/5.0").method(Connection.Method.GET).validateTLSCertificates(false)
-                    
-                    .execute();
-        System.out.println(execute2.body());
-}} 
+         Usuario s =new Sistema("06663852388").logar();
+        System.out.println(s.getListaDocs().toString());
+}
+} 
