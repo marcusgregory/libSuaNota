@@ -5,12 +5,9 @@
  */
 package Sistema;
 
-import DocsFiscais.DocFiscal;
 import DocsFiscais.ListaDF;
 import Exceptions.UsuarioNaoLogadoException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
