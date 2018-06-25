@@ -9,16 +9,51 @@ package DocsFiscais;
  *
  * @author Vitoria
  */
-public class CF {
-
+public class DocFiscal {
+    private TipoDoc tipo;
     private String numCGF;
     private String numDocCOO;
     private String numCaixaECF;
     private String numFab;
     private String dataEmissao;
+    private String especie;
+    private String serie;
+    private String numAIDF;
     private String valor;
     private String hidLote;
     private String secDocFiscal;
+
+    public String getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
+
+    public String getSerie() {
+        return serie;
+    }
+
+    public void setSerie(String serie) {
+        this.serie = serie;
+    }
+
+    public String getNumAIDF() {
+        return numAIDF;
+    }
+
+    public void setNumAIDF(String numAIDF) {
+        this.numAIDF = numAIDF;
+    }
+
+    public TipoDoc getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoDoc tipo) {
+        this.tipo = tipo;
+    }
    
     public String getSecDocFiscal() {
         return secDocFiscal;
@@ -94,7 +129,9 @@ public class CF {
 
     @Override
     public String toString() {
-        return "CF{" + "numCGF=" + numCGF + ", numDocCOO=" + numDocCOO + ", numCaixaECF=" + numCaixaECF + ", numFab=" + numFab + ", dataEmissao=" + dataEmissao + ", valor=" + valor + ", hidLote=" + hidLote + ", secDocFiscal=" + secDocFiscal + '}';
+        return "DocFiscal{" + "tipo=" + tipo + ", numCGF=" + numCGF + ", numDocCOO=" + numDocCOO + ", numCaixaECF=" + numCaixaECF + ", numFab=" + numFab + ", dataEmissao=" + dataEmissao + ", especie=" + especie + ", serie=" + serie + ", numAIDF=" + numAIDF + ", valor=" + valor + ", hidLote=" + hidLote + ", secDocFiscal=" + secDocFiscal + '}';
     }
+
+   
 
 }

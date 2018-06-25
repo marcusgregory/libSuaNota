@@ -24,6 +24,6 @@ public class NewMain4 {
     public static void main(String[] args) throws IOException, ErroLoginException {
         // TODO code application logic here
          Usuario s =new Sistema("06663852388").logar();
-        System.out.println(s.getListaDocs().toString());
+        System.out.println(s.getListaDocs().getFirstDF().toString());
 }
 } 

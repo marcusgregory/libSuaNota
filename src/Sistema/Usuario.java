@@ -5,8 +5,8 @@
  */
 package Sistema;
 
-import DocsFiscais.CF;
-import DocsFiscais.ListaCF;
+import DocsFiscais.DocFiscal;
+import DocsFiscais.ListaDF;
 import Exceptions.UsuarioNaoLogadoException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -69,7 +69,7 @@ public class Usuario {
         this.cookies = cookies;
     }
 
-    public ListaCF getListaDocs() throws IOException {
+    public ListaDF getListaDocs() throws IOException {
         return Requests.RequestDocFiscal.request(this);
     }
 

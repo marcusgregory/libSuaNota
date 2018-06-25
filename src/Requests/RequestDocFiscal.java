@@ -5,8 +5,9 @@
  */
 package Requests;
 
-import DocsFiscais.CF;
-import DocsFiscais.ListaCF;
+import DocsFiscais.DocFiscal;
+import DocsFiscais.ListaDF;
+import DocsFiscais.TipoDoc;
 import Sistema.Usuario;
 import Verificadores.Regex;
 import java.io.IOException;
@@ -20,38 +21,50 @@ import org.jsoup.select.Elements;
  * @author Gregory
  */
 public class RequestDocFiscal {
-    public static ListaCF request(Usuario usuario) throws IOException{
-         Connection.Response execute = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/ler_lote_digitacao.asp").userAgent("Mozilla/5.0").method(Connection.Method.POST).validateTLSCertificates(false)
-                    .header("Referer", "https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/validar_usuario.asp")
-                    .data("pessoa", "fisica")
-                    .data("prosseguir", "Prosseguir")
-                    .cookies(usuario.getCookies())
-                    .execute();
 
-            Connection.Response execute2 = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/incluir_cf.asp").userAgent("Mozilla/5.0").method(Connection.Method.GET).validateTLSCertificates(false)
-                    .header("Referer", "https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/tipo_documento.asp")             
-                    .cookies(usuario.getCookies())
-                    .execute();
-            //System.out.println(execute2.body());
-            Elements docsLote = execute2.parse().select("#textoContainer > form:nth-child(2) > table:nth-child(10)").select("tr").attr("height","20").next().next().not(".titulo");
-            ListaCF lista = new ListaCF();
-            for(Element docLote : docsLote){
-                CF cf = new CF();
-               // System.out.println("|Tipo:       |"+docLote.select("td:nth-child(1)").text());
-                cf.setNumCGF(docLote.select("td:nth-child(2)").text());
-                cf.setNumDocCOO(docLote.select("td:nth-child(3)").text());
-                cf.setNumCaixaECF(docLote.select("td:nth-child(4)").text());
-                cf.setNumFab(docLote.select("td:nth-child(5)").text());
-                //System.out.println("|Espécie:    |"+docLote.select("td:nth-child(6)").text());
-                //System.out.println("|Série:      |"+docLote.select("td:nth-child(7)").text());
-                //System.out.println("|Nº AIDF:    |"+docLote.select("td:nth-child(8)").text());
-                cf.setDataEmissao(docLote.select("td:nth-child(9)").text());
-                cf.setValor(docLote.select("td:nth-child(10)").text());
-                cf.setSecDocFiscal(Regex.numDocFiscal(docLote.select("td:nth-child(13)").html()));
-                cf.setHidLote(execute2.parse().select("form:nth-child(2) > input:nth-child(5)").attr("value"));
-                lista.addCF(cf);
-                
+    public static ListaDF request(Usuario usuario) throws IOException {
+        Connection.Response execute = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/ler_lote_digitacao.asp").userAgent("Mozilla/5.0").method(Connection.Method.POST).validateTLSCertificates(false)
+                .header("Referer", "https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/validar_usuario.asp")
+                .data("pessoa", "fisica")
+                .data("prosseguir", "Prosseguir")
+                .cookies(usuario.getCookies())
+                .execute();
+
+        Connection.Response execute2 = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/incluir_cf.asp").userAgent("Mozilla/5.0").method(Connection.Method.GET).validateTLSCertificates(false)
+                .header("Referer", "https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/tipo_documento.asp")
+                .cookies(usuario.getCookies())
+                .execute();
+        //System.out.println(execute2.body());
+        Elements docsLote = execute2.parse().select("#textoContainer > form:nth-child(2) > table:nth-child(10)").select("tr").attr("height", "20").next().next().not(".titulo");
+        ListaDF lista = new ListaDF();
+        for (Element docLote : docsLote) {
+            DocFiscal df = new DocFiscal();
+            String tipo = docLote.select("td:nth-child(1)").text();
+            switch (tipo) {
+                case "CF":
+                    df.setTipo(TipoDoc.CUPOM_FISCAL);
+                    break;
+                case "NF":
+                    df.setTipo(TipoDoc.NOTA_FISCAL);
+                    break;
+                default:
+                    df.setTipo(null);
+                    break;
             }
-     return lista;   
+            df.setNumCGF(docLote.select("td:nth-child(2)").text());
+            df.setNumDocCOO(docLote.select("td:nth-child(3)").text());
+            df.setNumCaixaECF(docLote.select("td:nth-child(4)").text());
+            df.setNumFab(docLote.select("td:nth-child(5)").text());
+            df.setEspecie(docLote.select("td:nth-child(6)").text());
+            df.setSerie(docLote.select("td:nth-child(7)").text());
+            df.setNumAIDF(docLote.select("td:nth-child(8)").text());
+            df.setDataEmissao(docLote.select("td:nth-child(9)").text());
+            df.setValor(docLote.select("td:nth-child(10)").text());
+            df.setSecDocFiscal(Regex.numDocFiscal(docLote.select("td:nth-child(13)").html()));
+            df.setHidLote(execute2.parse().select("form:nth-child(2) > input:nth-child(5)").attr("value"));
+            lista.addDF(df);
+
+        }
+        return lista;
     }
 }

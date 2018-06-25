@@ -5,15 +5,15 @@
  */
 package Requests;
 
-import DocsFiscais.CF;
+import DocsFiscais.DocFiscal;
 
 /**
  *
  * @author Gregory
  */
-public class RequestCadastroCF {
+public class RequestCadastroDF {
     
-    public static void request(CF cf){
+    public static void request(DocFiscal df){
         
     }
 }
