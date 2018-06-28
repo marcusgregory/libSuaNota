@@ -5,7 +5,8 @@
  */
 package Sistema;
 
-import DocsFiscais.ListaDF;
+import DocsFiscais.ListaDocFiscal;
+import Exceptions.NenhumLoteAbertoException;
 import Exceptions.UsuarioNaoLogadoException;
 import java.io.IOException;
 import java.util.Map;
@@ -66,7 +67,7 @@ public class Usuario {
         this.cookies = cookies;
     }
 
-    public ListaDF getListaDocs() throws IOException {
+    public ListaDocFiscal getListaDocs() throws IOException, NenhumLoteAbertoException {
         return Requests.RequestDocFiscal.request(this);
     }
 

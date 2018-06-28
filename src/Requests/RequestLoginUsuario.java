@@ -21,8 +21,9 @@ import org.jsoup.select.Elements;
 public class RequestLoginUsuario {
 //Método "request" recebe um objeto "Sistema" e faz o Login do usuário usando o CPF e retorna um objeto "Usuário"
 
-    public static Usuario request(Sistema sistema) throws IOException, ErroLoginException {
+    public static Usuario request(Sistema sistema) throws ErroLoginException, IOException {
         //Obtém os cookies da página da sefaz e o numero identificador.
+        
         System.out.println("Obtendo Cookies...");
         Connection.Response pagConsultaID = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/consultas/consulta_ID.asp")
                 .userAgent("Mozilla/5.0")
@@ -62,7 +63,7 @@ public class RequestLoginUsuario {
                     .execute();
             System.err.println("StatusHTTP=" + pagLogin.statusCode() + " | " + pagLogin.statusMessage());
             /*Verifica se a resposta é HTTP/200, se for o usuário efetuou o Login
-            se a resposta for 302 o usuário está inativo no sistema ou o numero identificador está errado.
+            se a resposta for HTTP/302 o usuário está inativo no sistema ou o numero identificador está errado.
             */
             if (pagLogin.statusCode() == 200) {
                 System.out.println("Login OK");
@@ -77,6 +78,7 @@ public class RequestLoginUsuario {
                 throw new ErroLoginException("Usuário inativo ou número identificador errado!");
             }
         }
+       
 
     }
 }

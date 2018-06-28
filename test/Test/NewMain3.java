@@ -55,7 +55,6 @@ public class NewMain3 {
                 System.out.println("|Nº AIDF:    |"+docLote.select("td:nth-child(8)").text());
                 System.out.println("|Data:       |"+docLote.select("td:nth-child(9)").text());
                 System.out.println("|Valor (R$): |"+docLote.select("td:nth-child(10)").text());
-                System.out.println("|N° Lote:    |"+execute2.parse().select("form:nth-child(2) > input:nth-child(5)").attr("value"));
                 System.out.println("-------------------------------------------------------------");
                 
             }

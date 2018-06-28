@@ -6,6 +6,7 @@
 package Test;
 
 import Exceptions.ErroLoginException;
+import Exceptions.NenhumLoteAbertoException;
 import Sistema.Sistema;
 import Sistema.Usuario;
 import java.io.IOException;
@@ -23,7 +24,17 @@ public class NewMain4 {
      */
     public static void main(String[] args) throws IOException, ErroLoginException {
         // TODO code application logic here
-         Usuario s =new Sistema("06663852388").logar();
-        System.out.println(s.getListaDocs().getFirstDF().toString());
+         Usuario s = null;
+        try{
+         s =new Sistema("38200297373").logar();
+            System.out.println("Olá "+s.getNome()+" seu Identificador é:"+s.getNumID());
+          System.out.println(s.getListaDocs().toString());
+        }catch(IOException ex){
+            System.err.println(ex);
+            
+        }catch(NenhumLoteAbertoException ex){
+            System.err.println(ex);
+        }
+       
 }
 } 

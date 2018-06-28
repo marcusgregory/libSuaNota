@@ -48,18 +48,19 @@ public class NewMain2 {
             System.out.println("|Nome         :|" + execute6.parse().select("form>table td:eq(1)").get(1).text());
             System.out.println("|CPF          :|" + execute6.parse().select("form>table td:eq(1)").get(2).text());
             System.out.println("8");
-            Connection.Response execute8 = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/ler_lote_digitacao.asp").userAgent("Mozilla/5.0").method(Connection.Method.POST).validateTLSCertificates(false)
+            Connection.Response execute8 = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/ler_lote_digitacao.asp").userAgent("Mozilla/5.0").method(Connection.Method.POST).validateTLSCertificates(false).followRedirects(false)
                     .header("Referer", "https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/validar_usuario.asp")
                     .data("pessoa", "fisica")
                     .data("prosseguir", "Prosseguir")
                     .cookies(cookies)
                     .execute();
-
+            
+            System.out.println(execute8.parse().text().contains("Esse participante não possui nenhum lote de documentos aberto.")+" "+execute8.statusCode());
             Connection.Response executeF2 = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/incluir_cf.asp").userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36").method(Connection.Method.GET).validateTLSCertificates(false)
                     .header("Referer", "https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/tipo_documento.asp")             
                     .cookies(cookies)
                     .execute();
-            System.out.println(executeF2.body());
+            //System.out.println(executeF2.body());
         }
     }
 }
