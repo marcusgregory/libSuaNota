@@ -10,6 +10,7 @@ package DocsFiscais;
  * @author Vitoria
  */
 public class DocFiscal {
+
     private TipoDoc tipo;
     private String numCGF;
     private String numDocCOO;
@@ -21,7 +22,7 @@ public class DocFiscal {
     private String numAIDF;
     private String valor;
     private String hidLote;
-    private String secDocFiscal;
+    private String secDocFiscal="0";
 
     public String getEspecie() {
         return especie;
@@ -54,7 +55,7 @@ public class DocFiscal {
     public void setTipo(TipoDoc tipo) {
         this.tipo = tipo;
     }
-   
+
     public String getSecDocFiscal() {
         return secDocFiscal;
     }
@@ -131,7 +132,5 @@ public class DocFiscal {
     public String toString() {
         return "DocFiscal{" + "tipo=" + tipo + ", numCGF=" + numCGF + ", numDocCOO=" + numDocCOO + ", numCaixaECF=" + numCaixaECF + ", numFab=" + numFab + ", dataEmissao=" + dataEmissao + ", especie=" + especie + ", serie=" + serie + ", numAIDF=" + numAIDF + ", valor=" + valor + ", hidLote=" + hidLote + ", secDocFiscal=" + secDocFiscal + '}';
     }
-
-   
 
 }

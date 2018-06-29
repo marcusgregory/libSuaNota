@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Test;
+package Testes;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,7 +15,7 @@ import org.jsoup.Jsoup;
  *
  * @author Gregory
  */
-public class NewMain2 {
+public class TesteLoginImpl {
 
     /**
      * @param args the command line arguments
@@ -27,9 +27,7 @@ public class NewMain2 {
                 .execute();
         Map<String, String> cookies = execute.cookies();
         System.out.println("Cookies: " + cookies);
-        
-        
-       
+
         System.out.println("7");
         Connection.Response execute6 = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/validar_usuario.asp").userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36")
                 .method(Connection.Method.POST)
@@ -54,10 +52,10 @@ public class NewMain2 {
                     .data("prosseguir", "Prosseguir")
                     .cookies(cookies)
                     .execute();
-            
-            System.out.println(execute8.parse().text().contains("Esse participante não possui nenhum lote de documentos aberto.")+" "+execute8.statusCode());
+
+            System.out.println(execute8.parse().text().contains("Esse participante não possui nenhum lote de documentos aberto.") + " " + execute8.statusCode());
             Connection.Response executeF2 = Jsoup.connect("https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/incluir_cf.asp").userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36").method(Connection.Method.GET).validateTLSCertificates(false)
-                    .header("Referer", "https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/tipo_documento.asp")             
+                    .header("Referer", "https://www.sefaz.ce.gov.br/content/aplicacao/internet/suanota/digitacao_online/tipo_documento.asp")
                     .cookies(cookies)
                     .execute();
             //System.out.println(executeF2.body());

@@ -12,12 +12,12 @@ package DocsFiscais;
 public enum TipoDoc {
     CUPOM_FISCAL("CF"), NOTA_FISCAL("NF");
     public final String valor;
-    
-    TipoDoc(String valorOpcao){
-        valor=valorOpcao;
+
+    TipoDoc(String valorOpcao) {
+        valor = valorOpcao;
     }
-    
-   public String getValor(){
-       return valor;
-   }
+
+    public String getValor() {
+        return valor;
+    }
 }

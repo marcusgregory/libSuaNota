@@ -6,6 +6,7 @@
 package DocsFiscais;
 
 import java.util.ArrayList;
+
 /**
  *
  * @author Gregory
@@ -29,22 +30,18 @@ public class ListaDocFiscal {
     public void setDocsFiscais(ArrayList<DocFiscal> DFs) {
         this.DocsFiscais = DFs;
     }
-    public DocFiscal getFirstDF(){
+
+    public DocFiscal getFirstDF() {
         return this.DocsFiscais.get(0);
     }
-    public DocFiscal getLastDF(){
-        return this.DocsFiscais.get(this.DocsFiscais.size()-1);
+
+    public DocFiscal getLastDF() {
+        return this.DocsFiscais.get(this.DocsFiscais.size() - 1);
     }
 
     @Override
     public String toString() {
         return "ListaDocFiscal{" + "DocsFiscais=" + DocsFiscais + '}';
     }
-
-    
-
-  
-
-   
 
 }

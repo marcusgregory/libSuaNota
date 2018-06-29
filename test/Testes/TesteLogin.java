@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Test;
+package Testes;
 
 import Exceptions.ErroLoginException;
 import Sistema.Sistema;
@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author Gregory
  */
-public class NewMain {
+public class TesteLogin {
 
     /**
      * @param args the command line arguments
@@ -25,8 +25,8 @@ public class NewMain {
             // TODO code application logic here
             System.out.println(new Sistema("06663852388").logar().toString());
         } catch (IOException ex) {
-            Logger.getLogger(NewMain.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TesteLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

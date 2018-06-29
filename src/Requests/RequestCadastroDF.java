@@ -12,8 +12,8 @@ import DocsFiscais.DocFiscal;
  * @author Gregory
  */
 public class RequestCadastroDF {
-    
-    public static void request(DocFiscal df){
-        
+
+    public static void request(DocFiscal df) {
+
     }
 }

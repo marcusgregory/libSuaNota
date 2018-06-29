@@ -10,6 +10,7 @@ package Exceptions;
  * @author Vitoria
  */
 public class NenhumLoteAbertoException extends Exception {
+
     public NenhumLoteAbertoException(String message) {
         super(message);
     }

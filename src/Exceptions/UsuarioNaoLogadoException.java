@@ -10,6 +10,7 @@ package Exceptions;
  * @author Vitoria
  */
 public class UsuarioNaoLogadoException extends Exception {
+
     public UsuarioNaoLogadoException(String message) {
         super(message);
     }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Test;
+package Testes;
 
 import Exceptions.ErroLoginException;
 import Exceptions.NenhumLoteAbertoException;
@@ -17,24 +17,24 @@ import org.jsoup.Jsoup;
  *
  * @author Vitoria
  */
-public class NewMain4 {
+public class TesteListaDocs {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, ErroLoginException {
         // TODO code application logic here
-         Usuario s = null;
-        try{
-         s =new Sistema("38200297373").logar();
-            System.out.println("Olá "+s.getNome()+" seu Identificador é:"+s.getNumID());
-          System.out.println(s.getListaDocs().toString());
-        }catch(IOException ex){
+        Usuario s = null;
+        try {
+            s = new Sistema("38200297373").logar();
+            System.out.println("Olá " + s.getNome() + " seu Identificador é:" + s.getNumID());
+            System.out.println(s.getListaDocs().toString());
+        } catch (IOException ex) {
             System.err.println(ex);
-            
-        }catch(NenhumLoteAbertoException ex){
+
+        } catch (NenhumLoteAbertoException ex) {
             System.err.println(ex);
         }
-       
+
+    }
 }
-} 

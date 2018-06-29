@@ -14,21 +14,24 @@ import java.io.IOException;
  * @author Gregory
  */
 public class Sistema {
+
     private String CPF;
     private static Sistema sistema;
 
     public Sistema(String CPF) {
         this.CPF = CPF;
-        sistema=this;
+        sistema = this;
     }
-public static Sistema getSistemaAtual() throws UsuarioNaoLogadoException{
-    if (sistema == null) {
+
+    public static Sistema getSistemaAtual() throws UsuarioNaoLogadoException {
+        if (sistema == null) {
             throw new UsuarioNaoLogadoException("Usuario não está logado no sistema!");
         } else {
             return sistema;
         }
-    
-}
+
+    }
+
     public String getCPF() {
         return CPF;
     }
@@ -37,12 +40,13 @@ public static Sistema getSistemaAtual() throws UsuarioNaoLogadoException{
         this.CPF = CPF;
     }
 
-    public Usuario logar() throws IOException, ErroLoginException{
-        return Requests.RequestLoginUsuario.request(this);
+    public Usuario logar() throws IOException, ErroLoginException {
+        return Requests.RequestLogin.request(this);
     }
+
     @Override
     public String toString() {
         return "Sistema{" + "CPF=" + CPF + '}';
     }
-    
+
 }
