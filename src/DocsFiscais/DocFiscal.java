@@ -5,6 +5,11 @@
  */
 package DocsFiscais;
 
+import Exceptions.ErroDocFiscalException;
+import Exceptions.UsuarioNaoLogadoException;
+import Sistema.Usuario;
+import java.io.IOException;
+
 /**
  *
  * @author Vitoria
@@ -127,7 +132,9 @@ public class DocFiscal {
     public void setNumCGF(String numCGF) {
         this.numCGF = numCGF;
     }
-
+      public void cadastrar() throws ErroDocFiscalException, UsuarioNaoLogadoException,IOException{
+          Requests.RequestCadastroDF.request(this, Usuario.getUsuarioAtual());
+      }
     @Override
     public String toString() {
         return "DocFiscal{" + "tipo=" + tipo + ", numCGF=" + numCGF + ", numDocCOO=" + numDocCOO + ", numCaixaECF=" + numCaixaECF + ", numFab=" + numFab + ", dataEmissao=" + dataEmissao + ", especie=" + especie + ", serie=" + serie + ", numAIDF=" + numAIDF + ", valor=" + valor + ", hidLote=" + hidLote + ", secDocFiscal=" + secDocFiscal + '}';
