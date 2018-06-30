@@ -59,10 +59,10 @@ public class RequestCadastroDF {
         
         if(execute3.statusCode()==302){
    
-        Pattern pattern = Pattern.compile("\\.\\.\\/erro\\.asp\\?msg=(?<msg>.+)\\&");
+        Pattern pattern = Pattern.compile("\\.\\.\\/erro\\.asp\\?msg=(.+)\\&");
         Matcher comparator = pattern.matcher( URLDecoder.decode(execute3.header("Location"),"UTF-8"));
         if (comparator.find(0)) {
-          throw new ErroDocFiscalException(comparator.group("msg"));
+          throw new ErroDocFiscalException(comparator.group(1));
         }
         }    
             

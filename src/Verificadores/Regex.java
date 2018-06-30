@@ -15,10 +15,10 @@ import java.util.regex.Pattern;
 public class Regex {
 
     public static String numDocFiscal(String html) {
-        Pattern pattern = Pattern.compile("staOnlineEx\\(1,(?<numDocFiscal>.+\\d)\\);");
+        Pattern pattern = Pattern.compile("staOnlineEx\\(1,(.+\\d)\\);");
         Matcher comparator = pattern.matcher(html);
         if (comparator.find(0)) {
-            return comparator.group("numDocFiscal");
+            return comparator.group(1);
         } else {
             return null;
         }
